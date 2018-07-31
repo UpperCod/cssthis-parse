@@ -1,12 +1,14 @@
 {
   "name": "cssthis-parse",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "description": "Is a way to write component-oriented styles, transform your style into a template string for creating functions.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "jsnext:main": "src/index.js",
   "source": "src/index.js",
-  "scripts": {},
+  "scripts": {
+    "test": "jest --watchAll"
+  },
   "author": "Matias Trujillo Olivares",
   "license": "ISC",
   "dependencies": {
@@ -15,5 +17,12 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/UpperCod/cssthis-parse.git"
+  },
+  "devDependencies": {
+    "cssnano": "^4.0.5",
+    "jest": "^23.4.2"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
