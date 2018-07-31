@@ -1,13 +1,14 @@
 {
   "name": "cssthis-parse",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Is a way to write component-oriented styles, transform your style into a template string for creating functions.",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "jsnext:main": "src/index.js",
   "source": "src/index.js",
   "scripts": {
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "prepublish": "jest"
   },
   "author": "Matias Trujillo Olivares",
   "license": "ISC",
