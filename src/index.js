@@ -106,11 +106,14 @@ function transform(nodes, deep) {
     });
 }
 
-export default function(plugins = []) {
-    let instance = postcss(plugins);
-    return style =>
-        instance.process(style, { parser: postcss.parse }).then(css => {
+export default function(plugins = [], sync) {
+    let instance = postcss(plugins),
+        read = css => {
             transform(css.root.nodes);
             return css.root.toString();
-        });
+        };
+    return style => {
+        let process = instance.process(style, { parser: postcss.parse });
+        return sync ? read(process) : process.then(read);
+    };
 }
