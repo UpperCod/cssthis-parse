@@ -1,8 +1,8 @@
 import postcss from "postcss";
 
 let prefix = {
-    is: "${props.is}",
-    host: "${props.id}"
+    cn: "${props.cn}",
+    id: "${props.id}"
 };
 /**
  * allows to iterate over a selector, based on the comma character,
@@ -32,7 +32,7 @@ function replace(selector) {
     return selector.replace(
         /:(this|host|global)(?:\(([^\)]+)\)){0,1}([^\s]*)(\s*)(.*)/g,
         (all, host, args, state, space, concat) => {
-            let rootClassName = host === "global" ? "" : prefix.host;
+            let rootClassName = host === "global" ? "" : prefix.id;
             if (/:(this|global|host)/.test(concat)) {
                 concat = replace(concat);
             }
@@ -83,7 +83,7 @@ function transform(nodes, deep) {
                     node.nodes = transform(node.nodes);
                 }
                 if (/keyframes/.test(node.name)) {
-                    node.params = `${prefix.is}${node.params}`;
+                    node.params = `${prefix.cn}-${node.params}`;
                 }
                 break;
             case "decl":
@@ -95,11 +95,11 @@ function transform(nodes, deep) {
                 if (/animation$/.test(node.prop)) {
                     node.value = node.value.replace(
                         /[^\s]+/,
-                        value => `${prefix.is}${value}`
+                        value => `${prefix.cn}-${value}`
                     );
                 }
                 if (/animation-name$/.test(node.prop)) {
-                    node.value = `${prefix.is}${node.value}`;
+                    node.value = `${prefix.cn}-${node.value}`;
                 }
                 break;
         }

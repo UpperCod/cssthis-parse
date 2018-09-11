@@ -113,7 +113,7 @@ describe("Test when applying :this as a prefix within the keyframes", () => {
         `
         ).then(css => {
             expect(css).toBe(
-                "${props.id}{animation:${props.is}move 1s ease all}@keyframes ${props.is}move{0%{color:#000}to{color:orange}}"
+                "${props.id}{animation:${props.cn}-move 1s ease all}@keyframes ${props.cn}-move{0%{color:#000}to{color:orange}}"
             );
         });
     });
@@ -132,7 +132,7 @@ describe("Test when applying :this as a prefix within the keyframes", () => {
         `
         ).then(css => {
             expect(css).toBe(
-                "${props.id}{animation-duration:1s;animation-name:${props.is}move}@keyframes ${props.is}move{0%{color:#000}to{color:orange}}"
+                "${props.id}{animation-duration:1s;animation-name:${props.cn}-move}@keyframes ${props.cn}-move{0%{color:#000}to{color:orange}}"
             );
         });
     });

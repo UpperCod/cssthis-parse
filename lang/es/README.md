@@ -193,9 +193,9 @@ button{
 }
 /*----output----*/
 .${props.id} button{
-   animation : ${props.is}-move 1s ease all;
+   animation : ${props.cn}-move 1s ease all;
 }
-@keyframes ${props.is}-move{
+@keyframes ${props.cn}-move{
    0%{
        transform : translate(0px,0px);
    }
