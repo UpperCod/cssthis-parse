@@ -15,7 +15,7 @@ This is done by defragmenting the css using **postcss**
 ### Departure
 
 ```css
-${prop.cn}{
+${prop.id}{
    font-size: 30px;
 }
 ```
@@ -42,7 +42,7 @@ parse(plugins)(`
 `).then((css)=>{
    console.log(css)
    /**
-   .${props.cn}{
+   .${props.id}{
         width : 200px;
         height : 200px;
    }
@@ -55,7 +55,7 @@ parse(plugins)(`
 
 ## :this
 
-**:this** allows you to point to the root class of the context, by using the variable `prop`, for **:this** the root class will be defined by `prop.cn`.
+**:this** allows you to point to the root class of the context, by using the variable `prop`, for **:this** the root class will be defined by `prop.id`.
 
 
 
@@ -69,7 +69,7 @@ If **:this** is used as a function, it will create a list of selectors based on 
    color : black;
 }
 /*----output----*/
-h1.${props.cn}{
+h1.${props.id}{
    color : black;
 }
 ```
@@ -83,9 +83,9 @@ the following example shows how **:this** can receive more than one argument reg
    color : black;
 }
 /*----output----*/
-h1.${props.cn},
-h2.${props.cn},
-h3.${props.cn}{
+h1.${props.id},
+h2.${props.id},
+h3.${props.id}{
    color : black;
 }
 ```
@@ -99,7 +99,7 @@ You can also make **:this** act only if it is accompanied by the given class as 
    color : black;
 }
 /*----output----*/
-.${props.cn}.primary{
+.${props.id}.primary{
    color : black;
 }
 ```
@@ -113,7 +113,7 @@ You can also make **:this** act only when accompanied by one or more attributes
    width : 100%;
 }
 /*----output----*/
-.${props.cn}[large]{
+.${props.id}[large]{
    width : 100%;
 }
 ```
@@ -127,7 +127,7 @@ searches by attribute and class also work without the need to use parentheses
    width : 100%;
 }
 /*----output----*/
-.${props.cn}[large]{
+.${props.id}[large]{
    width : 100%;
 }
 ```
@@ -141,8 +141,8 @@ One of the advantages of using parentheses is that the selection by attribute is
    width : 50%;
 }
 /*----output----*/
-h1.${props.cn}:not([large]),
-h2.${props.cn}:not([large]){
+h1.${props.id}:not([large]),
+h2.${props.id}:not([large]){
    width : 50%;
 }
 ```
@@ -160,7 +160,7 @@ button{
    font-size : 20px;
 }
 /*----output----*/
-.${props.cn} button{
+.${props.id} button{
    font-size : 20px;
 }
 ```
@@ -178,7 +178,7 @@ in the following example it is taught that it has the same effect within the alr
 }
 /*----output----*/
 @media (max-width: 300px){
-   .${props.cn} button{
+   .${props.id} button{
        font-size : 20px;
    }
 }
@@ -201,10 +201,10 @@ button{
    }
 }
 /*----output----*/
-.${props.cn} button{
-   animation : ${props.cn}-move 1s ease all;
+.${props.id} button{
+   animation : ${props.is}-move 1s ease all;
 }
-@keyframes ${props.cn}-move{
+@keyframes ${props.is}-move{
    0%{
        transform : translate(0px,0px);
    }
@@ -241,7 +241,7 @@ button{
   color : this(primary);
 }
 /*----output----*/
-.${props.cn} button{
+.${props.id} button{
     color : ${props.primary};
 }
 ```

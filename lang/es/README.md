@@ -15,7 +15,7 @@ Esto lo realiza desfragmentando el css mediante **postcss**
 ### Salida
 
 ```css
-${prop.cn}{
+${prop.id}{
    font-size : 30px;
 }
 ```
@@ -42,7 +42,7 @@ parse(plugins)(`
 `).then((css)=>{
    console.log(css)
    /**
-   .${props.cn}{
+   .${props.id}{
         width : 200px;
         height : 200px;
    }
@@ -55,7 +55,7 @@ parse(plugins)(`
 
 ## :this
 
-**:this** permite apuntar hacia la clase de raíz del contexto, mediante el uso de la variable `prop`, para **:this** la clase de raíz será definida por `prop.cn`.
+**:this** permite apuntar hacia la clase de raíz del contexto, mediante el uso de la variable `prop`, para **:this** la clase de raíz será definida por `prop.id`.
 
 
 
@@ -69,7 +69,7 @@ Si **:this** es usado como función, creará una lista de selectores a base de l
    color : black;
 }
 /*----output----*/
-h1.${props.cn}{
+h1.${props.id}{
    color : black;
 }
 ```
@@ -82,9 +82,9 @@ el siguiente ejemplo enseña cómo **:this** puede recibir más de un argumento 
    color : black;
 }
 /*----output----*/
-h1.${props.cn},
-h2.${props.cn},
-h3.${props.cn}{
+h1.${props.id},
+h2.${props.id},
+h3.${props.id}{
    color : black;
 }
 ```
@@ -97,7 +97,7 @@ también ud puede hacer que **:this** actúa solo si se acompaña de la clase da
    color : black;
 }
 /*----output----*/
-.${props.cn}.primary{
+.${props.id}.primary{
    color : black;
 }
 ```
@@ -110,7 +110,7 @@ también ud puede hacer que **:this** actúa solo cuando se acompaña de uno o m
    width : 100%;
 }
 /*----output----*/
-.${props.cn}[large]{
+.${props.id}[large]{
    width : 100%;
 }
 ```
@@ -123,7 +123,7 @@ las búsquedas por atributo y clase también funcionan sin la necesidad de usar 
    width : 100%;
 }
 /*----output----*/
-.${props.cn}[large]{
+.${props.id}[large]{
    width : 100%;
 }
 ```
@@ -136,8 +136,8 @@ una de las ventajas del el uso de paréntesis es que la selección por atributo 
    width : 50%;
 }
 /*----output----*/
-h1.${props.cn}:not([large]),
-h2.${props.cn}:not([large]){
+h1.${props.id}:not([large]),
+h2.${props.id}:not([large]){
    width : 50%;
 }
 ```
@@ -154,7 +154,7 @@ button{
    font-size : 20px;
 }
 /*----output----*/
-.${props.cn} button{
+.${props.id} button{
    font-size : 20px;
 }
 ```
@@ -169,7 +169,7 @@ en el siguiente ejemplo se enseña que posee el mismo efecto dentro del alrule @
 }
 /*----output----*/
 @media (max-width: 300px){
-   .${props.cn} button{
+   .${props.id} button{
        font-size : 20px;
    }
 }
@@ -190,10 +190,10 @@ button{
    }
 }
 /*----output----*/
-.${props.cn} button{
-   animation : ${props.cn}-move 1s ease all;
+.${props.id} button{
+   animation : ${props.is}-move 1s ease all;
 }
-@keyframes ${props.cn}-move{
+@keyframes ${props.is}-move{
    0%{
        transform : translate(0px,0px);
    }
@@ -229,7 +229,7 @@ button{
   color : this(primary);
 }
 /*----output----*/
-.${props.cn} button{
+.${props.id} button{
     color : ${props.primary};
 }
 ```

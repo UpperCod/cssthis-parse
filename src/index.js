@@ -1,7 +1,8 @@
 import postcss from "postcss";
 
 let prefix = {
-    class: "${props.cn}"
+    is: "${props.is}",
+    host: "${props.id}"
 };
 /**
  * allows to iterate over a selector, based on the comma character,
@@ -29,10 +30,10 @@ function map(selector, callback) {
  */
 function replace(selector) {
     return selector.replace(
-        /:(this|global)(?:\(([^\)]+)\)){0,1}([^\s]*)(\s*)(.*)/g,
+        /:(this|host|global)(?:\(([^\)]+)\)){0,1}([^\s]*)(\s*)(.*)/g,
         (all, host, args, state, space, concat) => {
-            let rootClassName = host === "global" ? "" : "." + prefix.class;
-            if (/:(this|global)/.test(concat)) {
+            let rootClassName = host === "global" ? "" : prefix.host;
+            if (/:(this|global|host)/.test(concat)) {
                 concat = replace(concat);
             }
             if (args) {
@@ -68,7 +69,7 @@ function transform(nodes, deep) {
                         if (!selector.indexOf(":global")) {
                             selector = selector.replace(/:global\s+/g, "");
                         } else {
-                            selector = !selector.indexOf(":this")
+                            selector = /^:(this|host)/.test(selector)
                                 ? selector
                                 : ":this " + selector;
                         }
@@ -82,7 +83,7 @@ function transform(nodes, deep) {
                     node.nodes = transform(node.nodes);
                 }
                 if (/keyframes/.test(node.name)) {
-                    node.params = `${prefix.class}-${node.params}`;
+                    node.params = `${prefix.is}${node.params}`;
                 }
                 break;
             case "decl":
@@ -94,11 +95,11 @@ function transform(nodes, deep) {
                 if (/animation$/.test(node.prop)) {
                     node.value = node.value.replace(
                         /[^\s]+/,
-                        value => `${prefix.class}-${value}`
+                        value => `${prefix.is}${value}`
                     );
                 }
                 if (/animation-name$/.test(node.prop)) {
-                    node.value = `${prefix.class}-${node.value}`;
+                    node.value = `${prefix.is}${node.value}`;
                 }
                 break;
         }

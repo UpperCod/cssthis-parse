@@ -9,14 +9,14 @@ let cssnano = require("cssnano");
 describe("Tests by the prefix :this", () => {
     test("1: Replace the prefix :this", () => {
         return cssthis()(`:this{color:black}`).then(css => {
-            expect(css).toBe(".${props.cn}{color:black}");
+            expect(css).toBe("${props.id}{color:black}");
         });
     });
 
     test("2: Replace the :this(...args) prefix with arguments, selectors by tagName", () => {
         return cssthis()(`:this(h1,h2,h3){color:black}`).then(css => {
             expect(css).toBe(
-                "h1.${props.cn}, h2.${props.cn}, h3.${props.cn}{color:black}"
+                "h1${props.id}, h2${props.id}, h3${props.id}{color:black}"
             );
         });
     });
@@ -25,7 +25,7 @@ describe("Tests by the prefix :this", () => {
         return cssthis()(`:this([title],[data-type=title]){color:black}`).then(
             css => {
                 expect(css).toBe(
-                    ".${props.cn}[title], .${props.cn}[data-type=title]{color:black}"
+                    "${props.id}[title], ${props.id}[data-type=title]{color:black}"
                 );
             }
         );
@@ -33,7 +33,7 @@ describe("Tests by the prefix :this", () => {
 
     test("4: Replace the :this(...args) prefix with arguments, selectors by attribute", () => {
         return cssthis()(`:this(#id-1):not(h1){color:black}`).then(css => {
-            expect(css).toBe(".${props.cn}#id-1:not(h1){color:black}");
+            expect(css).toBe("${props.id}#id-1:not(h1){color:black}");
         });
     });
 });
@@ -80,7 +80,7 @@ describe("Tests by the prefix this(<any>)", () => {
             }
         `
         ).then(css => {
-            expect(css).toBe(".${props.cn}{color:${props.primary}}");
+            expect(css).toBe("${props.id}{color:${props.primary}}");
         });
     });
     test("2: Replace the prefix :this, on 2 opportunities", () => {
@@ -92,7 +92,7 @@ describe("Tests by the prefix this(<any>)", () => {
         `
         ).then(css => {
             expect(css).toBe(
-                ".${props.cn}{color:${props.primary} ${props.contrast}}"
+                "${props.id}{color:${props.primary} ${props.contrast}}"
             );
         });
     });
@@ -113,7 +113,7 @@ describe("Test when applying :this as a prefix within the keyframes", () => {
         `
         ).then(css => {
             expect(css).toBe(
-                ".${props.cn}{animation:${props.cn}-move 1s ease all}@keyframes ${props.cn}-move{0%{color:#000}to{color:orange}}"
+                "${props.id}{animation:${props.is}move 1s ease all}@keyframes ${props.is}move{0%{color:#000}to{color:orange}}"
             );
         });
     });
@@ -132,7 +132,7 @@ describe("Test when applying :this as a prefix within the keyframes", () => {
         `
         ).then(css => {
             expect(css).toBe(
-                ".${props.cn}{animation-duration:1s;animation-name:${props.cn}-move}@keyframes ${props.cn}-move{0%{color:#000}to{color:orange}}"
+                "${props.id}{animation-duration:1s;animation-name:${props.is}move}@keyframes ${props.is}move{0%{color:#000}to{color:orange}}"
             );
         });
     });
