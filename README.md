@@ -4,6 +4,8 @@ Is a way to write component-oriented styles, transform your style into a templat
 
 This is done by defragmenting the css using **postcss**
 
+> Cssthis, now also accepts **:host**, as alias for **:this**. 
+
 ### Entry
 
 ```css

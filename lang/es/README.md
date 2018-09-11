@@ -4,6 +4,8 @@ es una forma de escribir estilos orientada a componentes, transforma tu estilo e
 
 Esto lo realiza desfragmentando el css mediante **postcss**
 
+>Cssthis, ahora tambien acepta **:host**, como alias para **:this**.
+
 ### Entrada
 
 ```css
