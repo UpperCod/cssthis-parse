@@ -1,6 +1,6 @@
 {
   "name": "cssthis-parse",
-  "version": "0.0.5",
+  "version": "0.1.0",
   "description": "Is a way to write component-oriented styles, transform your style into a template string for creating functions.",
   "main": "dist/index.js",
   "module": "dist/index.js",
